@@ -42,12 +42,15 @@ colorscheme candy
 
 
 " Formatting {
-    set nowrap                      " wrap long lines
-    set smartindent
-    set tabstop=4
-    set shiftwidth=4
-    set expandtab
-    set softtabstop=4
+    :set nowrap                      " wrap long lines
+
+    " uncommented to use default text editing settings
+	:set smartindent
+    :set tabstop=4
+	" The settings for indentaion
+    :set shiftwidth=4
+    :set expandtab
+   
     "set autoindent                  " indent at the same level of the previous line
     "set shiftwidth=4                " use indents of 4 spaces
     "set expandtab                   " tabs are spaces, not tabs
@@ -65,14 +68,14 @@ colorscheme candy
 "	autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 "" }
 
-" Fugitive {
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
-"}
+"" Fugitive {
+    "nnoremap <silent> <leader>gs :Gstatus<CR>
+    "nnoremap <silent> <leader>gd :Gdiff<CR>
+    "nnoremap <silent> <leader>gc :Gcommit<CR>
+    "nnoremap <silent> <leader>gb :Gblame<CR>
+    "nnoremap <silent> <leader>gl :Glog<CR>
+    "nnoremap <silent> <leader>gp :Git push<CR>
+""}
 
 if has('statusline')
     set laststatus=2
@@ -87,6 +90,9 @@ if has('statusline')
     "set statusline+=\ [%{getcwd()}]          " current dir
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
+
+" Highlight parantheses
+set showmatch
 
 " Markdown highlighting {
     let g:vim_markdown_folding_disabled=1
