@@ -6,6 +6,7 @@
         "mixpanel" : true,
         "config" : true,
         "branch" : true,
+        "pprint" : true,
         "suite": true,
         "limitText": true,
         "info": true,

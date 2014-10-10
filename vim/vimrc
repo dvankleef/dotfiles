@@ -1,0 +1,222 @@
+" Set highlighting on"
+:syntax on
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set shell=/bin/bash
+
+" Conceals javascript functions to f
+set cole=2
+let g:javascript_conceal = 1
+
+" Conceal owlin to a cool W
+syntax keyword cOwlin owlin conceal cchar=⨈
+
+let javascript_enable_domhtmlcss = 1
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+call vundle#begin('~/dev/dotfiles/vim/.vim/bundle')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+"Plugin 'marijnh/tern_for_vim'
+Plugin 'tyru/open-browser.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"commented out because it was not compatible
+"with my vim installation
+Plugin 'bling/vim-airline'
+"Plugin 'tpope/vim-surround'
+"Plugin 'Raimondi/delimitMate' was very annoying, didn't allow me to delete
+"the characters
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'pangloss/vim-javascript'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'reedes/vim-lexical' " Spell-checks for writing
+Plugin 'reedes/vim-colors-pencil' "Colorscheme for writing
+Plugin 'reedes/vim-wordy' " Uncover usage problems in your writing
+Plugin 'tpope/vim-fugitive' " Git on stereoids, well known to be awesome
+"Plugin 'chrisbra/csv.vim' Didn't work so well, check it out again
+"Plugin 'reedes/vim-wheel' " Make scrollwheel scroll vim. Didn't work on osx
+"Plugin 'nathanaelkane/vim-indent-guides'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" Make F2 a button to toggle pastemode
+set pastetoggle=<F2>
+
+" Highlight the current line"
+:set cursorline
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+   
+filetype plugin indent on   " Automatically detect file types.
+
+set ff=unix
+
+set history=1000                " Store a ton of history (default is 20)
+set nu                          " Line numbers on
+set showmatch                   " show matching brackets/parenthesis
+"set hlsearch                    " highlight search terms
+set scrolljump=5                " lines to scroll when cursor leaves screen
+
+
+colorscheme candy
+
+" Key (re)Mappings {
+    let mapleader = ','
+
+    " Easier moving in tabs and windows
+    map <C-J> <C-W>j<C-W>_
+    map <C-K> <C-W>k<C-W>_
+    map <C-L> <C-W>l<C-W>_
+    map <C-H> <C-W>h<C-W>_
+
+    " Shortcuts
+    " Change Working Directory to that of the current file
+    "cmap cwd lcd %:p:h
+    "cmap cd. lcd %:p:h
+    lcd %:p:h
+
+    map <leader>ff :999winc ><CR>
+
+    " visual shifting (does not exit Visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
+
+    "Open selected link
+    nmap gx <Plug>(openbrowser-smart-search) 
+    vmap gx <Plug>(openbrowser-smart-search)
+
+    " fix my js with the leader+k command
+    map <Leader>k :execute ":w !fixmyjs " . expand("%")<CR>:edit<CR>
+
+
+    " jshint validation
+    nnoremap <silent><F5> :JSHint<CR>
+    inoremap <silent><F5> <C-O>:JSHint<CR>
+    vnoremap <silent><F5> :JSHint<CR>
+
+    " show next jshint error
+    nnoremap <silent><F6> :lnext<CR>
+    inoremap <silent><F6> <C-O>:lnext<CR>
+    vnoremap <silent><F6> :lnext<CR>
+
+    " show previous jshint error
+    nnoremap <silent><F7> :lprevious<CR>
+    inoremap <silent><F7> <C-O>:lprevious<CR>
+    vnoremap <silent><F7> :lprevious<CR>
+
+" }
+
+
+" Formatting {
+    :set nowrap                      " wrap long lines
+
+    " uncommented to use default text editing settings
+	:set smartindent
+    :set tabstop=4
+	" The settings for indentaion
+    :set shiftwidth=4
+    :set expandtab
+   
+    "set autoindent                  " indent at the same level of the previous line
+    "set shiftwidth=4                " use indents of 4 spaces
+    "set expandtab                   " tabs are spaces, not tabs
+    "set tabstop=4                   " an indentation every four columns
+    "set softtabstop=4               " let backspace delete indent
+" }
+
+" Indent guides {
+    "let g:indent_guides_start_level = 2
+    "let g:indent_guides_guide_size = 1
+    "let g:indent_guides_enable_on_vim_startup = 1
+
+    "let g:indent_guides_auto_olors = 0
+    "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+    "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+"" }
+
+"" Fugitive {
+    "nnoremap <silent> <leader>gs :Gstatus<CR>
+    "nnoremap <silent> <leader>gd :Gdiff<CR>
+    "nnoremap <silent> <leader>gc :Gcommit<CR>
+    "nnoremap <silent> <leader>gb :Gblame<CR>
+    "nnoremap <silent> <leader>gl :Glog<CR>
+    "nnoremap <silent> <leader>gp :Git push<CR>
+""}
+
+if has('statusline')
+    set laststatus=2
+
+    " Broken down into easily includeable segments
+    set statusline=%<%f\    " Filename
+    set statusline+=%w%h%m%r " Options
+    if has('fugitive')
+        set statusline+=%{fugitive#statusline()} "  Git Hotness 
+    endif 
+    set statusline+=\ [%{&ff}/%Y]            " filetype
+    "set statusline+=\ [%{getcwd()}]          " current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
+
+set t_Co=256
+let g:airline_theme = "kolor"
+
+" Highlight parantheses
+set showmatch
+
+" Markdown highlighting {
+    let g:vim_markdown_folding_disabled=1
+"}
+
+" Spell checker settings
+augroup lexical
+    autocmd!
+    " Only spellcheck text files, checking on code will make everything slow
+    autocmd FileType text,markdown,mkd call lexical#init()
+    autocmd FileType textile call lexical#init()
+    autocmd FileType text call lexical#init({ 'spell': 0 })
+
+    " Define thesaurus dictionary
+    let g:lexical#thesaurus = ['~/dev/thesaurus/mthesaur.txt',]
+    
+    " Lookup the word in thesaurus
+    let g:lexical#thesaurus_key = '<leader>t'
+
+
+    " Add more languages
+    let g:lexical#spelllang = ['en_us', 'en_ca', 'nl']
+
+augroup END
+
+"augroup Filetype markdown 
+    "" set linebreak on
+    ":set wrap                      " wrap long lines
+    "" Disable cursorline. When writing long texts on line this will be very annoying
+    ":set nocursorline
+"augroup END
+
+" Highlight text longer than 79 characters to prevent long lines
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+
+:set tw=79
+

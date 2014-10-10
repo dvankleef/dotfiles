@@ -24,7 +24,7 @@ source-file $HOME/dotfiles/tmux/config.conf
 Add this to `~/.vimrc`.
 
 ```vim
-source $HOME/.vim/config.vim
+source $HOME/dotfiles/vim/vimrc
 ```
 
 ### jshint
@@ -32,4 +32,4 @@ source $HOME/.vim/config.vim
 ``bash
 ln -s ~/dotfiles/jshint/config.json ~/.jshintrc
 ``
-`
+
