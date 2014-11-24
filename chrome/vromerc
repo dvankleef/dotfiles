@@ -1,0 +1,20 @@
+" Map qwerty hjkl navigation to my dvorak keyboard
+map h j
+map t k
+
+" Define search engines. the value should be valid json looks like below.
+" Please remeber the first searchengine is the default one. in the below 
+" one, it is google
+set searchengines={
+    "encrypted":"https://encrypted.google.com/search?hl=en&q=%s", 
+    "wikipedia":"http://en.wikipedia.org/wiki/{{keyword}}",
+    "yubnub":"http://yubnub.org/parser/parse?command={{keyword}}"
+}
+
+" Change default search engine, default is google.
+set defaultsearch=encrypted
+
+set autocomplete
+
+:silent qmark m https://www.google.com/mail
+
