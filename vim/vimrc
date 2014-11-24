@@ -10,9 +10,6 @@ set shell=/bin/bash
 set cole=2
 let g:javascript_conceal = 1
 
-" Conceal owlin to a cool W
-syntax keyword cOwlin owlin conceal cchar=⨈
-
 let javascript_enable_domhtmlcss = 1
 
 " set the runtime path to include Vundle and initialize
@@ -23,24 +20,30 @@ call vundle#begin('~/dev/dotfiles/vim/.vim/bundle')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-"Plugin 'marijnh/tern_for_vim'
+"Plugin 'marijnh/tern_for_vim' < what is this again?
 Plugin 'tyru/open-browser.vim'
-"Plugin 'Valloric/YouCompleteMe'
-"commented out because it was not compatible
-"with my vim installation
 Plugin 'bling/vim-airline'
-"Plugin 'tpope/vim-surround'
-"Plugin 'Raimondi/delimitMate' was very annoying, didn't allow me to delete
-"the characters
 Plugin 'Shutnik/jshint2.vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'pangloss/vim-javascript'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'esneider/YUNOcommit.vim' " commit reminder for vim
 Plugin 'reedes/vim-lexical' " Spell-checks for writing
 Plugin 'reedes/vim-colors-pencil' "Colorscheme for writing
 Plugin 'reedes/vim-wordy' " Uncover usage problems in your writing
 Plugin 'tpope/vim-fugitive' " Git on stereoids, well known to be awesome
+Plugin 'kien/rainbow_parentheses.vim' " Rainbow parantheses highlighting
+Plugin 'groenewege/vim-less' " Highlighting for less
+Plugin 'scrooloose/nerdtree' " Folder viewing
+Plugin 'scrooloose/syntastic' " Syntax error, with options to follow styleguides
+"Plugin 'skammer/vim-css-color' " #slow Gives colors in CSS a nice example
+"Plugin 'teddywing/auditory.vim' "Sound effects! VERY ANNOYING!!! 
+"Plugin 'Valloric/YouCompleteMe'
+"commented out because it was not compatible
+"with my vim installation
+"Plugin 'tpope/vim-surround'
+"Plugin 'Raimondi/delimitMate' was very annoying, didn't allow me to delete
+"the characters
 "Plugin 'chrisbra/csv.vim' Didn't work so well, check it out again
 "Plugin 'reedes/vim-wheel' " Make scrollwheel scroll vim. Didn't work on osx
 "Plugin 'nathanaelkane/vim-indent-guides'
@@ -77,6 +80,8 @@ set showmatch                   " show matching brackets/parenthesis
 "set hlsearch                    " highlight search terms
 set scrolljump=5                " lines to scroll when cursor leaves screen
 
+set relativenumber 
+set number
 
 colorscheme candy
 
@@ -108,6 +113,10 @@ colorscheme candy
     " fix my js with the leader+k command
     map <Leader>k :execute ":w !fixmyjs " . expand("%")<CR>:edit<CR>
 
+    " Map jj to ESC, #experimental - i hope to downcrease my hand movement to
+    " the esc key
+    " I mapped this to hh because Its right under my index finger in dvorak. 
+    inoremap hh <ESC>
 
     " jshint validation
     nnoremap <silent><F5> :JSHint<CR>
@@ -125,6 +134,8 @@ colorscheme candy
     vnoremap <silent><F7> :lprevious<CR>
 
 " }
+
+" 
 
 
 " Formatting {
@@ -220,3 +231,53 @@ augroup END
 
 :set tw=79
 
+
+
+" Rainbow parathesees highlighing 
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+
+
+"====[ Make the 81st column stand out ]====================
+    highlight ColorColumn ctermbg=magenta
+    call matchadd('ColorColumn', '\%81v', 100)
+
+"====[ Highlight the relative line numbers gray / yellow ]=
+    highlight LineNr ctermfg=238 ctermbg=0
+    highlight CursorLineNr ctermfg=gray ctermbg=0
+
+"=====[ Highlight matches when jumping to next ]=============
+    " This rewires n and N to do the highlighing...
+    nnoremap <silent> n   n:call HLNext(0.4)<cr>
+    nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+    " Makes the next text blinked
+    function! HLNext (blinktime)
+        set invcursorline
+        redraw
+        exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+        set invcursorline
+        redraw
+    endfunction
+
+"====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
+    exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+    set list
+
+"====[ Swap : and ; to make colon commands easier to type ]======
+    nnoremap  ;  :
+    nnoremap  :  ;
+
+"====[ Shorthand to toggle a list to a sentence, or in reverse ]======
+    nmap <leader>l   :call ListTrans_toggle_format()<CR>
+    nmap <leader>l   :call ListTrans_toggle_format('visual')<CR>
+
+"====[ Better digraph interactions ]======
+    inoremap <expr> <C-K> HUDG_GetDigraph()
+
+"====[ math on visual regions ]======
+    " Mapped to the vmath plugin 
+    vmap <expr> <leader>+ VMATH_YankAndAnalyse()
+    nmap        <leader>+ vip++
