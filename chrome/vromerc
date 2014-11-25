@@ -1,6 +1,7 @@
 " Map qwerty hjkl navigation to my dvorak keyboard
 map h j
 map t k
+map f F
 
 " Define search engines. the value should be valid json looks like below.
 " Please remeber the first searchengine is the default one. in the below 
