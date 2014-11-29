@@ -42,6 +42,8 @@ Plugin 'tommcdo/vim-fugitive-blame-ext' "  Show commit messages in Gblame
 Plugin 'tpope/vim-surround' " why didn't I use this one earlier? Nice tool to add/remove/change delimeters around strings
 Plugin 'tpope/vim-repeat' " Allows vim-surround to repeat itself with the . command
 Plugin 'tpope/vim-speeddating' " In/De-crement dates/time and more with CTRL-A/CTRL-X
+Plugin 'godlygeek/tabular' " Serious hotness when needing to tab some stuff nicely, such as dicts or tables
+Plugin 'airblade/vim-gitgutter' " Show +/- signs in front of the lines based on the git diff
 "Plugin 'tpope/vim-unimpaired' " Tpope is a fucking hero, somebody please enlighten me what this thing does? 
 "Plugin 'skammer/vim-css-color' " #slow Gives colors in CSS a nice example
 "Plugin 'teddywing/auditory.vim' "Sound effects! VERY ANNOYING!!! 
@@ -288,3 +290,6 @@ augroup END
     " Mapped to the vmath plugin 
     vmap <expr> <leader>+ VMATH_YankAndAnalyse()
     nmap        <leader>+ vip++
+
+"====[ make the gitgutter colors look nice ]======
+    highlight clear SignColumn
