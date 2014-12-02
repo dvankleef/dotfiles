@@ -33,3 +33,8 @@ source $HOME/dotfiles/vim/vimrc
 ln -s ~/dotfiles/jshint/config.json ~/.jshintrc
 ``
 
+### fish
+
+``bash
+ln -s ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
+``
