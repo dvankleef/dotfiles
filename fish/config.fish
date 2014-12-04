@@ -6,15 +6,15 @@ alias vi vim
 
 # Commandline shortcuts
 alias l ls
+alias c clear
 
 # Git aliasses
 
-alias c "git commit"
-alias s "git status"
+alias gc "git commit"
+alias gs "git status"
 alias gl "git log"
 alias gd "git diff"
 alias ga "git add"
-#alias gc "git commit"
 #alias gca "git add -A && git commit"
 
 # Necessary stuff for Go
