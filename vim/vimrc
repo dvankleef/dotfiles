@@ -10,6 +10,22 @@ set shell=/bin/bash
 set cole=2
 let g:javascript_conceal = 1
 
+" Redraw after performing script
+set lazyredraw
+
+" Auto-reload modified files (with no local changes)
+set autoread
+
+" Turn off backup and swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Incasesensitive search
+set incsearch
+set ignorecase
+
+" Huh? what is this again?
 let javascript_enable_domhtmlcss = 1
 
 " set the runtime path to include Vundle and initialize
@@ -19,14 +35,13 @@ call vundle#begin()
 call vundle#begin('~/dev/dotfiles/vim/.vim/bundle')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-"Plugin 'marijnh/tern_for_vim' < what is this again?
-Plugin 'tyru/open-browser.vim'
-Plugin 'bling/vim-airline'
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'pangloss/vim-javascript'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'gmarik/Vundle.vim' " Package manager
+Plugin 'tyru/open-browser.vim' " Open link with CTRL G
+Plugin 'bling/vim-airline' " Nice statusbar
+Plugin 'Shutnik/jshint2.vim' " Correct me on my javascript syntax
+Plugin 'flazz/vim-colorschemes' " I can haz colors?
+Plugin 'pangloss/vim-javascript' " Proper javascript syntax highlighting
+Plugin 'plasticboy/vim-markdown' " Bowdown bitches for my markdown [1]
 Plugin 'esneider/YUNOcommit.vim' " commit reminder for vim
 Plugin 'reedes/vim-lexical' " Spell-checks for writing
 Plugin 'reedes/vim-colors-pencil' "Colorscheme for writing
@@ -44,9 +59,20 @@ Plugin 'tpope/vim-repeat' " Allows vim-surround to repeat itself with the . comm
 Plugin 'tpope/vim-speeddating' " In/De-crement dates/time and more with CTRL-A/CTRL-X
 Plugin 'godlygeek/tabular' " Serious hotness when needing to tab some stuff nicely, such as dicts or tables
 Plugin 'airblade/vim-gitgutter' " Show +/- signs in front of the lines based on the git diff
-"Plugin 'tpope/vim-unimpaired' " Tpope is a fucking hero, somebody please enlighten me what this thing does? 
+Plugin 'mattboehm/vim-accordion' " Cool way to split windows
+Plugin 'rondale-sc/vim-spacejam' " Auto remove whitespace
+Plugin 'othree/html5.vim' " Don't freak out on HTML5 tags. OK?!!!
+Plugin 'idanarye/vim-merginal' " Make git merging easier, run with :Merginal
+Plugin 'koron/nyancat-vim' " just to shut down the emacs users [2]
+Plugin 'jaxbot/github-issues.vim' " Include github issues stuff
+Plugin 'jaxbot/browserlink.vim' " Live update with browser and sync between inspect element
+"Plugin 'msanders/snipmate.vim' " Didn't work for most items. Didn't want to
+"fine tune. Auto complete snippets, like type: for<tab> and it will give you a for loop
+"Plugin 'Facebook/vim-flow.git' " Static typing in javascript <- didn't work so smooth. Basically copied the flow output to the buffer when saving a file
+"Plugin 'marijnh/tern_for_vim' < what is this again?
+"Plugin 'tpope/vim-unimpaired' " Tpope is a fucking hero, somebody please enlighten me what this thing does?
 "Plugin 'skammer/vim-css-color' " #slow Gives colors in CSS a nice example
-"Plugin 'teddywing/auditory.vim' "Sound effects! VERY ANNOYING!!! 
+"Plugin 'teddywing/auditory.vim' "Sound effects! VERY ANNOYING!!!
 "Plugin 'Valloric/YouCompleteMe'
 "commented out because it was not compatible
 "with my vim installation
@@ -77,7 +103,7 @@ set pastetoggle=<F2>
 " Highlight the current line"
 :set cursorline
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-   
+
 filetype plugin indent on   " Automatically detect file types.
 
 set ff=unix
@@ -88,7 +114,7 @@ set showmatch                   " show matching brackets/parenthesis
 "set hlsearch                    " highlight search terms
 set scrolljump=5                " lines to scroll when cursor leaves screen
 
-set relativenumber 
+set relativenumber
 set number
 
 colorscheme candy
@@ -115,15 +141,15 @@ colorscheme candy
     vnoremap > >gv
 
     "Open selected link
-    nmap gx <Plug>(openbrowser-smart-search) 
+    nmap gx <Plug>(openbrowser-smart-search)
     vmap gx <Plug>(openbrowser-smart-search)
 
     " fix my js with the leader+k command
-    map <Leader>k :execute ":w !fixmyjs " . expand("%")<CR>:edit<CR>
+    map <Leader>k ;execute ":w !fixmyjs " . expand("%")<CR>:edit<CR>
 
     " Map jj to ESC, #experimental - i hope to downcrease my hand movement to
     " the esc key
-    " I mapped this to hh because Its right under my index finger in dvorak. 
+    " I mapped this to hh because Its right under my index finger in dvorak.
     inoremap hh <ESC>
 
     " jshint validation
@@ -143,7 +169,7 @@ colorscheme candy
 
 " }
 
-" 
+"
 
 
 " Formatting {
@@ -155,7 +181,7 @@ colorscheme candy
 	" The settings for indentaion
     :set shiftwidth=4
     :set expandtab
-   
+
     "set autoindent                  " indent at the same level of the previous line
     "set shiftwidth=4                " use indents of 4 spaces
     "set expandtab                   " tabs are spaces, not tabs
@@ -189,8 +215,8 @@ if has('statusline')
     set statusline=%<%f\    " Filename
     set statusline+=%w%h%m%r " Options
     if has('fugitive')
-        set statusline+=%{fugitive#statusline()} "  Git Hotness 
-    endif 
+        set statusline+=%{fugitive#statusline()} "  Git Hotness
+    endif
     set statusline+=\ [%{&ff}/%Y]            " filetype
     "set statusline+=\ [%{getcwd()}]          " current dir
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -216,7 +242,7 @@ augroup lexical
 
     " Define thesaurus dictionary
     let g:lexical#thesaurus = ['~/dev/thesaurus/mthesaur.txt',]
-    
+
     " Lookup the word in thesaurus
     let g:lexical#thesaurus_key = '<leader>t'
 
@@ -226,7 +252,7 @@ augroup lexical
 
 augroup END
 
-"augroup Filetype markdown 
+"augroup Filetype markdown
     "" set linebreak on
     ":set wrap                      " wrap long lines
     "" Disable cursorline. When writing long texts on line this will be very annoying
@@ -241,7 +267,7 @@ augroup END
 
 
 
-" Rainbow parathesees highlighing 
+" Rainbow parathesees highlighing
     au VimEnter * RainbowParenthesesToggle
     au Syntax * RainbowParenthesesLoadRound
     au Syntax * RainbowParenthesesLoadSquare
@@ -256,21 +282,6 @@ augroup END
     highlight LineNr ctermfg=238 ctermbg=0
     highlight CursorLineNr ctermfg=gray ctermbg=0
 
-"=====[ Highlight matches when jumping to next ]=============
-    " This rewires n and N to do the highlighing...
-    " Laggy, need to rewrite.
-    "nnoremap <silent> n   n:call HLNext(0.4)<cr>
-    "nnoremap <silent> N   N:call HLNext(0.4)<cr>
-
-    "" Makes the next text blinked
-    "function! HLNext (blinktime)
-        "set invcursorline
-        "redraw
-        "exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-        "set invcursorline
-        "redraw
-    "endfunction
-
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
     exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
     set list
@@ -281,15 +292,29 @@ augroup END
 
 "====[ Shorthand to toggle a list to a sentence, or in reverse ]======
     nmap <leader>l   :call ListTrans_toggle_format()<CR>
-    nmap <leader>l   :call ListTrans_toggle_format('visual')<CR>
+    vmap <leader>l   :call ListTrans_toggle_format('visual')<CR>
 
 "====[ Better digraph interactions ]======
     inoremap <expr> <C-K> HUDG_GetDigraph()
 
 "====[ math on visual regions ]======
-    " Mapped to the vmath plugin 
+    " Mapped to the vmath plugin
     vmap <expr> <leader>+ VMATH_YankAndAnalyse()
     nmap        <leader>+ vip++
 
 "====[ make the gitgutter colors look nice ]======
     highlight clear SignColumn
+
+"====[ Drag block selection around with arrow keys ]======
+    vmap <expr> <LEFT> DVB_Drag('left')
+    vmap <expr> <RIGHT> DVB_Drag('right')
+    vmap <expr> <DOWN> DVB_Drag('down')
+    vmap <expr> <UP> DVB_Drag('up')
+
+    " Use D to duplicate a block
+    vmap <expr> D DVB_Duplicate()
+
+" Footnotes
+" [1] I don't think much geeks will get this joke. But I'm referring to beyonce
+" here: https://www.youtube.com/watch?v=IyuUWOnS9BY
+" [2] http://nyan-mode.buildsomethingamazing.com/
