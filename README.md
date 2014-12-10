@@ -38,3 +38,8 @@ ln -s ~/dotfiles/jshint/config.json ~/.jshintrc
 ``bash
 ln -s ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
 ``
+
+### Git
+
+``bash
+ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
