@@ -43,3 +43,4 @@ ln -s ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
 
 ``bash
 ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
+``
