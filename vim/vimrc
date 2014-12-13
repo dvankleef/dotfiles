@@ -105,8 +105,6 @@ set pastetoggle=<F2>
 :set cursorline
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
 
-filetype plugin indent on   " Automatically detect file types.
-
 set ff=unix
 
 set history=1000                " Store a ton of history (default is 20)
@@ -177,9 +175,9 @@ colorscheme candy
     :set nowrap                      " wrap long lines
 
     " uncommented to use default text editing settings
-	:set smartindent
+    :set smartindent
     :set tabstop=4
-	" The settings for indentaion
+    " The settings for indentaion
     :set shiftwidth=4
     :set expandtab
 
