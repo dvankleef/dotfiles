@@ -66,6 +66,7 @@ Plugin 'idanarye/vim-merginal' " Make git merging easier, run with :Merginal
 Plugin 'koron/nyancat-vim' " just to shut down the emacs users [2]
 Plugin 'jaxbot/browserlink.vim' " Live update with browser and sync between inspect element
 Plugin 'reedes/vim-textobj-sentence' " Better sententce hopping with ( and )
+Plugin 'tpope/vim-liquid' " Vim doesn't choke anymore on some little jekyll code in HTML. Smooth!
 "Plugin 'jaxbot/github-issues.vim' " Acted annoying with bad networks. Blocked
 "the entire git commit flow.
 "Plugin 'msanders/snipmate.vim' " Didn't work for most items. Didn't want to
