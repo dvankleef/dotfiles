@@ -47,7 +47,9 @@ unset mark_old           # read/new is good enough for me
 set beep_new             # bell on new mails
 set pipe_decode          # strip headers and eval mimes when piping
 set thorough_search      # strip headers and eval mimes before searching
-set editor  = 'vim'
+set smart_wrap           # auto wrap long lines
+set sleep_time = 0       # be fast
+set editor  = 'vim'      # duh..
 
 # Account Settings -----------------------------------
 
@@ -114,6 +116,10 @@ alternative_order text/plain text/enriched text/html
 
 # Auto open HTML messages in lynx
 auto_view text/html
+
+#scroll inside the message rather than the index
+bind pager <up> previous-line 
+bind pager <down> next-line
 
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
 
