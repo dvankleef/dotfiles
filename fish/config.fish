@@ -14,6 +14,7 @@ alias gs "git status"
 alias gl "git log"
 alias gd "git diff"
 alias ga "git add"
+alias gp "git push"
 #alias gca "git add -A && git commit"
 
 # JIRASH
