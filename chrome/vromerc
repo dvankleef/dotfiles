@@ -1,0 +1,27 @@
+" Map qwerty hjkl navigation to my dvorak keyboard
+map h j
+map t k
+map f F
+
+" Define search engines. the value should be valid json looks like below.
+" Please remeber the first searchengine is the default one. in the below 
+" one, it is google
+set searchengines={
+    "encrypted":"https://encrypted.google.com/search?hl=en&q=%s", 
+    "wikipedia":"http://en.wikipedia.org/wiki/{{keyword}}",
+    "yubnub":"http://yubnub.org/parser/parse?command={{keyword}}"
+}
+
+" Change default search engine, default is google.
+set defaultsearch=encrypted
+
+set autocomplete
+
+" custom quick marks longer than one key
+set qm_hn=http://news.ycombinator.com
+" custom quick mark triggering JS (view below)
+set qm_r=::javascript::CustomMark.readLater();
+
+" Disable Vrome in those sites, Multiple URLs can be separated with ,
+set disablesites=mail.google.com, reader.google.com
+

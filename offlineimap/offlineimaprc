@@ -22,7 +22,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 
 [Repository riichard-Remote]
 ssl = yes
-cert_fingerprint = 687687a7f2dc166baf58221ff7a42f1683d0d164
+cert_fingerprint = d6b90ffd06292b1724e0644563299fffc9878780
 maxconnections = 1
 type = Gmail
 remoteuser = stdin@riichard.com

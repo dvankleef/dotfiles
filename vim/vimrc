@@ -10,10 +10,26 @@ set shell=/bin/bash
 set cole=2
 let g:javascript_conceal = 1
 
-" Conceal owlin to a cool W
-syntax keyword cOwlin owlin conceal cchar=⨈
+" Redraw after performing script
+set lazyredraw
 
+" Auto-reload modified files (with no local changes)
+set autoread
+
+" Turn off backup and swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Incasesensitive search
+set incsearch
+set ignorecase
+
+" Huh? what is this again?
 let javascript_enable_domhtmlcss = 1
+
+" Wah, switch of the noise!
+set noerrorbells visualbell t_vb= " No noise
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -22,25 +38,52 @@ call vundle#begin()
 call vundle#begin('~/dev/dotfiles/vim/.vim/bundle')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-"Plugin 'marijnh/tern_for_vim'
-Plugin 'tyru/open-browser.vim'
-"Plugin 'Valloric/YouCompleteMe'
-"commented out because it was not compatible
-"with my vim installation
-Plugin 'bling/vim-airline'
-"Plugin 'tpope/vim-surround'
-"Plugin 'Raimondi/delimitMate' was very annoying, didn't allow me to delete
-"the characters
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'pangloss/vim-javascript'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'gmarik/Vundle.vim' " Package manager
+Plugin 'tyru/open-browser.vim' " Open link with CTRL G
+Plugin 'bling/vim-airline' " Nice statusbar
+Plugin 'Shutnik/jshint2.vim' " Correct me on my javascript syntax
+Plugin 'flazz/vim-colorschemes' " I can haz colors?
+Plugin 'pangloss/vim-javascript' " Proper javascript syntax highlighting
+Plugin 'plasticboy/vim-markdown' " Bowdown bitches for my markdown [1]
+Plugin 'esneider/YUNOcommit.vim' " commit reminder for vim
 Plugin 'reedes/vim-lexical' " Spell-checks for writing
 Plugin 'reedes/vim-colors-pencil' "Colorscheme for writing
 Plugin 'reedes/vim-wordy' " Uncover usage problems in your writing
 Plugin 'tpope/vim-fugitive' " Git on stereoids, well known to be awesome
+Plugin 'kien/rainbow_parentheses.vim' " Rainbow parantheses highlighting
+Plugin 'groenewege/vim-less' " Highlighting for less
+Plugin 'scrooloose/nerdtree' " Folder viewing
+Plugin 'scrooloose/syntastic' " Syntax error, with options to follow styleguides
+Plugin 'shime/livedown' " Live markdown previen, lets test it!
+Plugin 'digitaltoad/vim-jade' " highlight jade
+Plugin 'tommcdo/vim-fugitive-blame-ext' "  Show commit messages in Gblame
+Plugin 'tpope/vim-surround' " why didn't I use this one earlier? Nice tool to add/remove/change delimeters around strings
+Plugin 'tpope/vim-repeat' " Allows vim-surround to repeat itself with the . command
+Plugin 'tpope/vim-speeddating' " In/De-crement dates/time and more with CTRL-A/CTRL-X
+Plugin 'godlygeek/tabular' " Serious hotness when needing to tab some stuff nicely, such as dicts or tables
+Plugin 'airblade/vim-gitgutter' " Show +/- signs in front of the lines based on the git diff
+Plugin 'mattboehm/vim-accordion' " Cool way to split windows
+Plugin 'rondale-sc/vim-spacejam' " Auto remove whitespace
+Plugin 'othree/html5.vim' " Don't freak out on HTML5 tags. OK?!!!
+Plugin 'idanarye/vim-merginal' " Make git merging easier, run with :Merginal
+Plugin 'koron/nyancat-vim' " just to shut down the emacs users [2]
+Plugin 'jaxbot/browserlink.vim' " Live update with browser and sync between inspect element
+Plugin 'reedes/vim-textobj-sentence' " Better sententce hopping with ( and )
+Plugin 'tpope/vim-liquid' " Vim doesn't choke anymore on some little jekyll code in HTML. Smooth!
+"Plugin 'jaxbot/github-issues.vim' " Acted annoying with bad networks. Blocked
+"the entire git commit flow.
+"Plugin 'msanders/snipmate.vim' " Didn't work for most items. Didn't want to
+"fine tune. Auto complete snippets, like type: for<tab> and it will give you a for loop
+"Plugin 'Facebook/vim-flow.git' " Static typing in javascript <- didn't work so smooth. Basically copied the flow output to the buffer when saving a file
+"Plugin 'marijnh/tern_for_vim' < what is this again?
+"Plugin 'tpope/vim-unimpaired' " Tpope is a fucking hero, somebody please enlighten me what this thing does?
+"Plugin 'skammer/vim-css-color' " #slow Gives colors in CSS a nice example
+"Plugin 'teddywing/auditory.vim' "Sound effects! VERY ANNOYING!!!
+"Plugin 'Valloric/YouCompleteMe'
+"commented out because it was not compatible
+"with my vim installation
+"Plugin 'Raimondi/delimitMate' was very annoying, didn't allow me to delete
+"the characters
 "Plugin 'chrisbra/csv.vim' Didn't work so well, check it out again
 "Plugin 'reedes/vim-wheel' " Make scrollwheel scroll vim. Didn't work on osx
 "Plugin 'nathanaelkane/vim-indent-guides'
@@ -66,8 +109,6 @@ set pastetoggle=<F2>
 " Highlight the current line"
 :set cursorline
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-   
-filetype plugin indent on   " Automatically detect file types.
 
 set ff=unix
 
@@ -77,8 +118,11 @@ set showmatch                   " show matching brackets/parenthesis
 "set hlsearch                    " highlight search terms
 set scrolljump=5                " lines to scroll when cursor leaves screen
 
+set relativenumber
+set number
 
 colorscheme candy
+" for writing, use calmar-256-light
 
 " Key (re)Mappings {
     let mapleader = ','
@@ -102,12 +146,16 @@ colorscheme candy
     vnoremap > >gv
 
     "Open selected link
-    nmap gx <Plug>(openbrowser-smart-search) 
+    nmap gx <Plug>(openbrowser-smart-search)
     vmap gx <Plug>(openbrowser-smart-search)
 
     " fix my js with the leader+k command
-    map <Leader>k :execute ":w !fixmyjs " . expand("%")<CR>:edit<CR>
+    map <Leader>k ;execute ":w !fixmyjs " . expand("%")<CR>:edit<CR>
 
+    " Map jj to ESC, #experimental - i hope to downcrease my hand movement to
+    " the esc key
+    " I mapped this to hh because Its right under my index finger in dvorak.
+    inoremap hh <ESC>
 
     " jshint validation
     nnoremap <silent><F5> :JSHint<CR>
@@ -126,17 +174,19 @@ colorscheme candy
 
 " }
 
+"
+
 
 " Formatting {
     :set nowrap                      " wrap long lines
 
     " uncommented to use default text editing settings
-	:set smartindent
+    :set smartindent
     :set tabstop=4
-	" The settings for indentaion
+    " The settings for indentaion
     :set shiftwidth=4
     :set expandtab
-   
+
     "set autoindent                  " indent at the same level of the previous line
     "set shiftwidth=4                " use indents of 4 spaces
     "set expandtab                   " tabs are spaces, not tabs
@@ -170,8 +220,8 @@ if has('statusline')
     set statusline=%<%f\    " Filename
     set statusline+=%w%h%m%r " Options
     if has('fugitive')
-        set statusline+=%{fugitive#statusline()} "  Git Hotness 
-    endif 
+        set statusline+=%{fugitive#statusline()} "  Git Hotness
+    endif
     set statusline+=\ [%{&ff}/%Y]            " filetype
     "set statusline+=\ [%{getcwd()}]          " current dir
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -197,7 +247,7 @@ augroup lexical
 
     " Define thesaurus dictionary
     let g:lexical#thesaurus = ['~/dev/thesaurus/mthesaur.txt',]
-    
+
     " Lookup the word in thesaurus
     let g:lexical#thesaurus_key = '<leader>t'
 
@@ -207,7 +257,7 @@ augroup lexical
 
 augroup END
 
-"augroup Filetype markdown 
+"augroup Filetype markdown
     "" set linebreak on
     ":set wrap                      " wrap long lines
     "" Disable cursorline. When writing long texts on line this will be very annoying
@@ -220,3 +270,59 @@ augroup END
 
 :set tw=79
 
+
+
+" Rainbow parathesees highlighing
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+
+
+"====[ Make the 81st column stand out ]====================
+    highlight ColorColumn ctermbg=magenta
+    call matchadd('ColorColumn', '\%81v', 100)
+
+"====[ Highlight the relative line numbers gray / yellow ]=
+    highlight LineNr ctermfg=238 ctermbg=0
+    highlight CursorLineNr ctermfg=gray ctermbg=0
+
+"====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
+    exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+    set list
+
+"====[ Swap : and ; to make colon commands easier to type ]======
+    nnoremap  ;  :
+    nnoremap  :  ;
+
+"====[ Shorthand to toggle a list to a sentence, or in reverse ]======
+    nmap <leader>l   :call ListTrans_toggle_format()<CR>
+    vmap <leader>l   :call ListTrans_toggle_format('visual')<CR>
+
+"====[ Better digraph interactions ]======
+    inoremap <expr> <C-K> HUDG_GetDigraph()
+
+"====[ math on visual regions ]======
+    " Mapped to the vmath plugin
+    vmap <expr> <leader>+ VMATH_YankAndAnalyse()
+    nmap        <leader>+ vip++
+
+"====[ make the gitgutter colors look nice ]======
+    highlight clear SignColumn
+
+"====[ Drag block selection around with arrow keys ]======
+    vmap <expr> <LEFT> DVB_Drag('left')
+    vmap <expr> <RIGHT> DVB_Drag('right')
+    vmap <expr> <DOWN> DVB_Drag('down')
+    vmap <expr> <UP> DVB_Drag('up')
+
+    " Use D to duplicate a block
+    vmap <expr> D DVB_Duplicate()
+
+"====[ Underline badly spelled words ]======
+    hi SpellBad  term=reverse cterm=undercurl gui=undercurl guisp=NONE ctermbg=NONE
+
+" Footnotes
+" [1] I don't think much geeks will get this joke. But I'm referring to beyonce
+" here: https://www.youtube.com/watch?v=IyuUWOnS9BY
+" [2] http://nyan-mode.buildsomethingamazing.com/
