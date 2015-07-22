@@ -14,4 +14,7 @@ c)      Change to end of sentence
 'b      Open blogposts quickfinder
 ,+      Run math on selected
 gx      Open url at cursor
-
+,l      Toggle lists to sentence
+,i      Highlight this word everywhere
+,I      Stop highlighting this word everywhere
+,/      Open searchresults in quickfix window
