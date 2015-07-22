@@ -24,6 +24,7 @@ set noswapfile
 " Incasesensitive search
 set incsearch
 set ignorecase
+set smartcase " Ignore case if search pattern is all lowercase,
 
 " Huh? what is this again?
 let javascript_enable_domhtmlcss = 1
@@ -53,7 +54,7 @@ Plugin 'tpope/vim-fugitive' " Git on stereoids, well known to be awesome
 Plugin 'kien/rainbow_parentheses.vim' " Rainbow parantheses highlighting
 Plugin 'groenewege/vim-less' " Highlighting for less
 Plugin 'scrooloose/nerdtree' " Folder viewing
-Plugin 'scrooloose/syntastic' " Syntax error, with options to follow styleguides
+Plugin 'scrooloose/syntastic' " Syntax validator, with options to follow styleguides
 Plugin 'shime/livedown' " Live markdown previen, lets test it!
 Plugin 'digitaltoad/vim-jade' " highlight jade
 Plugin 'tommcdo/vim-fugitive-blame-ext' "  Show commit messages in Gblame
@@ -70,12 +71,35 @@ Plugin 'koron/nyancat-vim' " just to shut down the emacs users [2]
 Plugin 'jaxbot/browserlink.vim' " Live update with browser and sync between inspect element
 Plugin 'reedes/vim-textobj-sentence' " Better sententce hopping with ( and )
 Plugin 'tpope/vim-liquid' " Vim doesn't choke anymore on some little jekyll code in HTML. Smooth!
+Plugin 'shinokada/SWTC.vim' " Starwars crawls
+Plugin 'ryanss/vim-hackernews' " HackerNews in vim! Open with :HackerNews
+Plugin 'vim-latex/vim-latex' "LaTeX syntax highlighting in vim!
+Plugin 'burnettk/vim-angular.git' " Shortcuts for angular file navigation
+Plugin 'othree/javascript-libraries-syntax.vim' "Syntax for JavaScript libraries, including Angular. This is the hotness you want to autocomplete ng-repeat et al. in your html.
+Plugin 'tomtom/tlib_vim' "
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate' " I think this is needed for other snippet plugins
+Plugin 'honza/vim-snippets' " Snippets! Autocomplete after tabbing etc
+Plugin 'matthewsimo/angular-vim-snippets' "Quick snippets for angular, such as ngfor<tab>
+Plugin 'claco/jasmine.vim' " Jasmin plugin for unit testing
+Plugin 'vim-scripts/FuzzyFinder' " Fuzzy file browser
+Plugin 'vim-scripts/L9' " This was needed for fuzzyfinder
+Plugin 'vasconcelloslf/vim-interestingwords' " highlight current word everywhere with shortcut
+Plugin 'bonsaiben/bootstrap-snippets' " Bootstrap snippets
+Plugin 'thinca/vim-localrc' " adopt vimrc in project directory
+Plugin 'Chiel92/vim-autoformat' " Autoformat code
+Plugin 'mhinz/vim-startify' " Nice start screen
+Plugin 'easymotion/vim-easymotion' " nicest thing about vim, fast movement
+"Plugin 'reedes/vim-pencil' " Hopefully better text wrapping. Lets see if we
+"can do it without. No, but it requires some (re-)configuration.
+"
+"Plugin 'marijnh/tern_for_vim' " suggestions as you type. Slower than
+"christmas.
 "Plugin 'jaxbot/github-issues.vim' " Acted annoying with bad networks. Blocked
 "the entire git commit flow.
 "Plugin 'msanders/snipmate.vim' " Didn't work for most items. Didn't want to
 "fine tune. Auto complete snippets, like type: for<tab> and it will give you a for loop
 "Plugin 'Facebook/vim-flow.git' " Static typing in javascript <- didn't work so smooth. Basically copied the flow output to the buffer when saving a file
-"Plugin 'marijnh/tern_for_vim' < what is this again?
 "Plugin 'tpope/vim-unimpaired' " Tpope is a fucking hero, somebody please enlighten me what this thing does?
 "Plugin 'skammer/vim-css-color' " #slow Gives colors in CSS a nice example
 "Plugin 'teddywing/auditory.vim' "Sound effects! VERY ANNOYING!!!
@@ -107,22 +131,27 @@ filetype plugin indent on    " required
 set pastetoggle=<F2>
 
 " Highlight the current line"
-:set cursorline
+set cursorline
+" Let the cursor line be toggled on and off by F3
+map <F9> :set cursorline!<CR>
+
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
 
 set ff=unix
 
-set history=1000                " Store a ton of history (default is 20)
-set nu                          " Line numbers on
-set showmatch                   " show matching brackets/parenthesis
-"set hlsearch                    " highlight search terms
-set scrolljump=5                " lines to scroll when cursor leaves screen
+set history=1000   " Store a ton of history (default is 20)
+set nu             " Line numbers on
+set showmatch      " show matching brackets/parenthesis
+set scrolljump=5   " lines to scroll when cursor leaves screen
+"set hlsearch       " highlight search terms
 
-set relativenumber
-set number
+set relativenumber " Make line numbers relative
+set number         " Show linenumbers
 
+" Color settings
 colorscheme candy
-" for writing, use calmar-256-light
+set t_Co=256
+let g:airline_theme = "kolor"
 
 " Key (re)Mappings {
     let mapleader = ','
@@ -155,7 +184,8 @@ colorscheme candy
     " Map jj to ESC, #experimental - i hope to downcrease my hand movement to
     " the esc key
     " I mapped this to hh because Its right under my index finger in dvorak.
-    inoremap hh <ESC>
+    " DISABLED. Made the h key type slower.;w
+    "inoremap hh <ESC>
 
     " jshint validation
     nnoremap <silent><F5> :JSHint<CR>
@@ -171,21 +201,19 @@ colorscheme candy
     nnoremap <silent><F7> :lprevious<CR>
     inoremap <silent><F7> <C-O>:lprevious<CR>
     vnoremap <silent><F7> :lprevious<CR>
-
 " }
-
-"
 
 
 " Formatting {
-    :set nowrap                      " wrap long lines
+    set tw=79
+    set nowrap                      " wrap long lines
 
     " uncommented to use default text editing settings
-    :set smartindent
-    :set tabstop=4
+    set smartindent
+    set tabstop=4
     " The settings for indentaion
-    :set shiftwidth=4
-    :set expandtab
+    set shiftwidth=4
+    set expandtab
 
     "set autoindent                  " indent at the same level of the previous line
     "set shiftwidth=4                " use indents of 4 spaces
@@ -227,9 +255,6 @@ if has('statusline')
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
-set t_Co=256
-let g:airline_theme = "kolor"
-
 " Highlight parantheses
 set showmatch
 
@@ -241,7 +266,7 @@ set showmatch
 augroup lexical
     autocmd!
     " Only spellcheck text files, checking on code will make everything slow
-    autocmd FileType text,markdown,mkd call lexical#init()
+    autocmd FileType md,text,markdown,mkd call lexical#init()
     autocmd FileType textile call lexical#init()
     autocmd FileType text call lexical#init({ 'spell': 0 })
 
@@ -250,7 +275,6 @@ augroup lexical
 
     " Lookup the word in thesaurus
     let g:lexical#thesaurus_key = '<leader>t'
-
 
     " Add more languages
     let g:lexical#spelllang = ['en_us', 'en_ca', 'nl']
@@ -268,7 +292,6 @@ augroup END
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 "match OverLength /\%81v.\+/
 
-:set tw=79
 
 
 
@@ -321,6 +344,116 @@ augroup END
 
 "====[ Underline badly spelled words ]======
     hi SpellBad  term=reverse cterm=undercurl gui=undercurl guisp=NONE ctermbg=NONE
+
+" Smooth note searching
+    command! -nargs=1 Ngrep grep "<args>" ~/PlainText/*.md
+    nnoremap <leader>[ :Ngrep
+
+" FuzzyFinder {{{2
+    nnoremap '<Space> :FufBookmarkDir<cr>
+    nnoremap '.  :FufFileWithCurrentBufferDir<cr>
+    nnoremap ''  :b#<cr>
+    nnoremap '/  :FufFile /<cr>
+    nnoremap 'a  :FufFile app/<cr>
+    nnoremap 'd  :FufFile $HOME/Dropbox/<cr>
+    nnoremap 'f  :FufFile<cr>
+    nnoremap 'h  :FufFile $HOME/<cr>
+    nnoremap 'j  :FufFile $HOME/.vim/<cr>
+    nnoremap 'k  :FufBuffer<cr>
+    nnoremap 'l  :FufTag<cr>
+    nnoremap 'n  :FufFile $NOTES_DIR/<cr>
+    nnoremap 'p  :e! ${PASSWORD_FILE}.gpg<cr>
+    nnoremap 'r  :e! $HOME/.bashrc<cr><cr>
+    nnoremap 's  :FufFile spec/<cr>
+    nnoremap 't  :cd %:p:h<cr>:sh<cr>:cd -<cr>
+    nnoremap 'v  :e! $MYVIMRC<cr><cr>
+    nnoremap 'w  :FufFile $HOME/PlainText/<cr>
+    nnoremap 'b  :FufFile $HOME/dev/riichard/_posts/<cr>
+
+    let g:fuf_file_exclude = '\v\~$|\.(DS_Store|o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+    let g:fuf_buffer_keyDelete = '<C-d>'
+
+" Keep search matches in the middle of the screen
+    nnoremap n nzzzv
+    nnoremap N Nzzzv
+
+" Save file when loosing focus in vim, there is never a moment I don't want to
+" save a file. Plus, time machine and dropbox keep backups
+    au FocusLost * :wa
+
+" Open a quickfix window with all search matches of last performed search.
+    nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+" Highlight interesting words configuration. Whenever I'm on a word, I can
+" highlight that particular word everywhere in the code
+    nnoremap <silent> <leader>i :call InterestingWords('n')<cr>
+    nnoremap <silent> <leader>I :call UncolorAllWords()<cr>
+
+" Quickly edit configuration files
+    nnoremap <leader>ev <C-W>s<C-W>j<C-w>L:e ~/dev/dotfiles/vim/vimrc<cr>
+    nnoremap <leader>er <C-W>s<C-W>j<C-w>L:e ~/dev/dotfiles/VIMREADME.md<cr>
+    nnoremap <leader>el <C-W>s<C-W>j<C-w>L:e ~/dev/dotfiles/<cr>
+    nnoremap <leader>ef <C-W>s<C-W>j<C-w>L:e ~/dev/dotfiles/fish/config.fish<cr>
+    nnoremap <leader>ec <C-W>s<C-W>j<C-w>L:e ~/dev/dotfiles/chrome/vromerc<cr>
+    nnoremap <leader>em <C-W>s<C-W>j<C-w>L:e ~/dev/dotfiles/mutt/muttrc<cr>
+    nnoremap <leader>et <C-W>s<C-W>j<C-w>L:e ~/dev/dotfiles/tmux/config.conf<cr>
+
+" Quick jumps with H and L to beginning or end of line
+    nnoremap H ^
+    nnoremap L $
+
+" Open non text files with the system file handler
+    augroup nonvim
+        au!
+        au BufRead *.png,*.jpg sil exe "!open " . shellescape(expand("%:p")) | bd | let &ft=&ft
+    augroup end
+
+" Check syntax with jscs
+" Syntax validator
+let g:syntastic_javascript_checkers=['jscs']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+noremap <silent> <Leader>W :call ToggleWrap()<CR>
+function ToggleWrap()
+  if &wrap
+    echo "Wrap OFF"
+    setlocal nowrap
+    set virtualedit=all
+    silent! nunmap <buffer> <Up>
+    silent! nunmap <buffer> <Down>
+    silent! nunmap <buffer> <Home>
+    silent! nunmap <buffer> <End>
+    silent! iunmap <buffer> <Up>
+    silent! iunmap <buffer> <Down>
+    silent! iunmap <buffer> <Home>
+    silent! iunmap <buffer> <End>
+  else
+    echo "Wrap ON"
+    setlocal wrap linebreak nolist
+    set virtualedit=
+    setlocal display+=lastline
+    noremap  <buffer> <silent> <Up>   gk
+    noremap  <buffer> <silent> <Down> gj
+    noremap  <buffer> <silent> <Home> g<Home>
+    noremap  <buffer> <silent> <End>  g<End>
+    inoremap <buffer> <silent> <Up>   <C-o>gk
+    inoremap <buffer> <silent> <Down> <C-o>gj
+    inoremap <buffer> <silent> <Home> <C-o>g<Home>
+    inoremap <buffer> <silent> <End>  <C-o>g<End>
+
+    noremap  <buffer> <silent> k gk
+    noremap  <buffer> <silent> j gj
+    noremap  <buffer> <silent> 0 g0
+    noremap  <buffer> <silent> $ g$
+  endif
+endfunction
 
 " Footnotes
 " [1] I don't think much geeks will get this joke. But I'm referring to beyonce
