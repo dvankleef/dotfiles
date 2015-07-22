@@ -22,8 +22,8 @@ set nowritebackup
 set noswapfile
 
 " Incasesensitive search
-set incsearch
-set ignorecase
+"set incsearch
+"set ignorecase
 set smartcase " Ignore case if search pattern is all lowercase,
 
 " Huh? what is this again?
@@ -152,6 +152,7 @@ set number         " Show linenumbers
 colorscheme candy
 set t_Co=256
 let g:airline_theme = "kolor"
+" for writing, use calmar-256-light
 
 " Key (re)Mappings {
     let mapleader = ','
@@ -202,6 +203,8 @@ let g:airline_theme = "kolor"
     inoremap <silent><F7> <C-O>:lprevious<CR>
     vnoremap <silent><F7> :lprevious<CR>
 " }
+
+"
 
 
 " Formatting {
