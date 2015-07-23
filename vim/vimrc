@@ -90,6 +90,7 @@ Plugin 'thinca/vim-localrc' " adopt vimrc in project directory
 Plugin 'Chiel92/vim-autoformat' " Autoformat code
 Plugin 'mhinz/vim-startify' " Nice start screen
 Plugin 'easymotion/vim-easymotion' " nicest thing about vim, fast movement
+Plugin 'editorconfig/editorconfig-vim' "Apparently the-standard for project editor configuration, jquery used this
 "Plugin 'reedes/vim-pencil' " Hopefully better text wrapping. Lets see if we
 "can do it without. No, but it requires some (re-)configuration.
 "
