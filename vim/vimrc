@@ -91,6 +91,9 @@ Plugin 'Chiel92/vim-autoformat' " Autoformat code
 Plugin 'mhinz/vim-startify' " Nice start screen
 Plugin 'easymotion/vim-easymotion' " nicest thing about vim, fast movement
 Plugin 'editorconfig/editorconfig-vim' "Apparently the-standard for project editor configuration, jquery used this
+Plugin 'kchmck/vim-coffee-script' " Syntax highighting for coffeescript
+Plugin 'tpope/vim-abolish' " Convert variable to snake_case or camelCase
+Plugin 'fatih/vim-go' " Syntax highlighter for go
 "Plugin 'reedes/vim-pencil' " Hopefully better text wrapping. Lets see if we
 "can do it without. No, but it requires some (re-)configuration.
 "
@@ -315,8 +318,8 @@ augroup END
     highlight CursorLineNr ctermfg=gray ctermbg=0
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
-    exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-    set list
+    "exec "set listchars=trail:\uB7,nbsp:~"
+    "set list
 
 "====[ Swap : and ; to make colon commands easier to type ]======
     nnoremap  ;  :
