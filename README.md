@@ -16,7 +16,7 @@ All of these instructions assume the repository has been cloned into your home d
 Add this to `~/.tmux.conf`.
 
 ```
-source-file $HOME/dotfiles/tmux/config.conf
+source-file $HOME/dev/dotfiles/tmux/config.conf
 ```
 
 ### vim
@@ -24,23 +24,23 @@ source-file $HOME/dotfiles/tmux/config.conf
 Add this to `~/.vimrc`.
 
 ```vim
-source $HOME/dotfiles/vim/vimrc
+source $HOME/dev/dotfiles/vim/vimrc
 ```
 
 ### jshint
 
 ``bash
-ln -s ~/dotfiles/jshint/config.json ~/.jshintrc
+ln -s ~/dev/dotfiles/jshint/config.json ~/.jshintrc
 ``
 
 ### fish
 
 ``bash
-ln -s ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
+ln -s ~/dev/dotfiles/fish/config.fish ~/.config/fish/config.fish
 ``
 
 ### Git
 
 ``bash
-ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
+ln -s ~/dev/dotfiles/git/gitconfig ~/.gitconfig
 ``
