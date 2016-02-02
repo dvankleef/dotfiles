@@ -41,7 +41,8 @@ call vundle#begin('~/dev/dotfiles/vim/vim/bundle')
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim' " Package manager
 Plugin 'tyru/open-browser.vim' " Open link with CTRL G
-Plugin 'bling/vim-airline' " Nice statusbar
+Plugin 'vim-airline/vim-airline' " Nice statusbar
+Plugin 'vim-airline/vim-airline-themes' " Nice statusbar
 Plugin 'Shutnik/jshint2.vim' " Correct me on my javascript syntax
 Plugin 'flazz/vim-colorschemes' " I can haz colors?
 Plugin 'pangloss/vim-javascript' " Proper javascript syntax highlighting
@@ -68,7 +69,7 @@ Plugin 'rondale-sc/vim-spacejam' " Auto remove whitespace
 Plugin 'othree/html5.vim' " Don't freak out on HTML5 tags. OK?!!!
 Plugin 'idanarye/vim-merginal' " Make git merging easier, run with :Merginal
 Plugin 'koron/nyancat-vim' " just to shut down the emacs users [2]
-Plugin 'jaxbot/browserlink.vim' " Live update with browser and sync between inspect element
+"Plugin 'jaxbot/browserlink.vim' " Live update with browser and sync between inspect element
 Plugin 'reedes/vim-textobj-sentence' " Better sententce hopping with ( and )
 Plugin 'tpope/vim-liquid' " Vim doesn't choke anymore on some little jekyll code in HTML. Smooth!
 Plugin 'shinokada/SWTC.vim' " Starwars crawls
@@ -94,6 +95,7 @@ Plugin 'editorconfig/editorconfig-vim' "Apparently the-standard for project edit
 Plugin 'kchmck/vim-coffee-script' " Syntax highighting for coffeescript
 Plugin 'tpope/vim-abolish' " Convert variable to snake_case or camelCase
 Plugin 'fatih/vim-go' " Syntax highlighter for go
+Plugin 'scrooloose/nerdcommenter' " Comments on stereoids. I don't know how, but apparently this was uninstalled or not packed in the dotfiles.
 "Plugin 'reedes/vim-pencil' " Hopefully better text wrapping. Lets see if we
 "can do it without. No, but it requires some (re-)configuration.
 "
@@ -417,7 +419,7 @@ augroup END
 
 " Check syntax with jscs
 " Syntax validator
-let g:syntastic_javascript_checkers=['jscs']
+let g:syntastic_javascript_checkers=['jshint']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
