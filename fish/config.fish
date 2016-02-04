@@ -15,6 +15,7 @@ alias gl "git log"
 alias gd "git diff"
 alias ga "git add"
 alias gp "git push"
+alias gdc "git diff --cached"
 #alias gca "git add -A && git commit"
 
 # JIRASH
