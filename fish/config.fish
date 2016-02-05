@@ -30,6 +30,9 @@ alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
 # Necessary stuff for Go
 set -x GOPATH $HOME/go
 
+# Make vim the default $EDITOR
+set -U EDITOR 'vim'
+
 # Alias to quickly reload fish 
 alias refish "source ~/.config/fish/config.fish"
 
