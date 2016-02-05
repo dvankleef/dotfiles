@@ -17,14 +17,18 @@ end
 # Git aliasses
 alias gc "git commit"
 alias gs "git status"
-alias gl "git log"
 alias gd "git diff"
 alias ga "git add"
+alias gaa "git add ."
+alias gau "git add -u ."
 alias gp "git push"
 alias gdc "git diff --cached"
 alias gpb "pushbranch"
+alias grh "git reset HEAD"
 alias gcm "git commit -m"
 #alias gca "git add -A && git commit"
+
+alias gl="clear ;and git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # JIRASH
 alias jirash "~/dev/jirash/bin/jirash"
