@@ -8,6 +8,12 @@ alias vi vim
 alias l ls
 alias c clear
 
+# Function to push current branch to origin
+function pushbranch
+    set branch (git rev-parse --abbrev-ref HEAD)
+    git push origin $branch
+end
+
 # Git aliasses
 alias gc "git commit"
 alias gs "git status"
@@ -16,6 +22,8 @@ alias gd "git diff"
 alias ga "git add"
 alias gp "git push"
 alias gdc "git diff --cached"
+alias gpb "pushbranch"
+alias gcm "git commit -m"
 #alias gca "git add -A && git commit"
 
 # JIRASH
@@ -31,14 +39,15 @@ set -x GOPATH $HOME/go
 set -x NVM_DIR "/home/yq63el/.nvm"
 source ~/.config/fish/nvm-wrapper/nvm.fish
 
-source ~/.config/p.fish
-
 function setCapsToCTRL
     echo 'Setting Caps Lock key to Control, Linux only!'
     xmodmap -e 'clear lock'
     xmodmap -e 'keycode 0x42 = Control_L'
     xmodmap -e 'add Control = Control_L'
 end
+
+# Load the login settings for the proxy from a different file
+source ~/.config/p.fish
 
 # Configure ING Proxy
 function proxy
