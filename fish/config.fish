@@ -7,6 +7,7 @@ alias vi vim
 # Commandline shortcuts
 alias l ls
 alias c clear
+alias q exit
 
 # Git aliasses
 alias gc "git commit"
