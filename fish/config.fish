@@ -20,6 +20,11 @@ alias gp "git push"
 # JIRASH
 alias jirash "~/dev/jirash/bin/jirash"
 
+# Config aliasses
+alias fishconfig "vim ~/.config/fish/config.fish"
+alias vimconfig "vim ~/dev/dotfiles/vim/vimrc"
+alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
+
 # Necessary stuff for Go
 set -x GOPATH $HOME/go
 
@@ -39,6 +44,5 @@ function gac
 end
 
 function git_commit_message
-    echo 'Enter your git commit message:'
-    echo ''
+    echo 'Enter your git commit message: '
 end
