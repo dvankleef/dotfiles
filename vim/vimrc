@@ -96,6 +96,7 @@ Plugin 'kchmck/vim-coffee-script' " Syntax highighting for coffeescript
 Plugin 'tpope/vim-abolish' " Convert variable to snake_case or camelCase
 Plugin 'fatih/vim-go' " Syntax highlighter for go
 Plugin 'scrooloose/nerdcommenter' " Comments on stereoids. I don't know how, but apparently this was uninstalled or not packed in the dotfiles.
+Plugin 'juanpabloaj/vim-istanbul' " Include code coverage from istanbul in the files
 "Plugin 'reedes/vim-pencil' " Hopefully better text wrapping. Lets see if we
 "can do it without. No, but it requires some (re-)configuration.
 "
