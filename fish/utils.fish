@@ -64,3 +64,12 @@ alias emptytrash="rm -rfv ~/.Trash"
 #alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 #alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
+
+
+################################
+###  I am an Idiot
+################################
+# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
+alias stfu="osascript -e 'set volume output muted true'"
+alias pumpitup="osascript -e 'set volume 10'"
+alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
