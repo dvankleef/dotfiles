@@ -17,7 +17,7 @@ alias gd "git diff"
 alias ga "git add"
 alias gp "git push"
 alias lastcommit "git show HEAD"
-alias ap "git add --all && git commit --amend --no-edit"
+alias ap "git add --all; git commit --amend --no-edit"
 #alias gca "git add -A && git commit"
 
 # JIRASH
