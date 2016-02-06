@@ -50,7 +50,9 @@ alias refish "source ~/dev/dotfiles/fish/config.fish"
 
 # Custom welcome message
 function fish_greeting
-    cat ~/dev/dotfiles/fish/logo.txt
+    # Disabled logo
+    # I like the clean prompt better
+    #cat ~/dev/dotfiles/fish/logo.txt
 end
 
 # Git add all, commit, and prompt for commit message
