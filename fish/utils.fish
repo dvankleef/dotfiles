@@ -61,6 +61,6 @@ alias emptytrash="rm -rfv ~/.Trash"
 
 
 # Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false and killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true and killall Finder"
+#alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+#alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
