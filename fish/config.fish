@@ -26,7 +26,7 @@ alias jirash "~/dev/jirash/bin/jirash"
 # Config file aliasses
 alias fishconfig "vim ~/dev/dotfiles/fish/config.fish"
 alias utilconfig "vim ~/dev/dotfiles/fish/utils.fish"
-alias promptconfig "vim ~/dev/dotfiles/fish/config.fish"
+alias promptconfig "vim ~/dev/dotfiles/fish/prompt.fish"
 alias vimconfig "vim ~/dev/dotfiles/vim/vimrc"
 alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
 
