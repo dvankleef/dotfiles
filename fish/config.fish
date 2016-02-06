@@ -47,6 +47,11 @@ set -U EDITOR 'vim'
 # Alias to quickly reload fish 
 alias refish "source ~/dev/dotfiles/fish/config.fish"
 
+# Custom welcome message
+function fish_greeting
+    cat ~/dev/dotfiles/fish/logo.txt
+end
+
 # Git add all, commit, and prompt for commit message
 # Usage:
 # gac
