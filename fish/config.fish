@@ -22,10 +22,18 @@ alias lastcommit "git show HEAD"
 # JIRASH
 alias jirash "~/dev/jirash/bin/jirash"
 
-# Config aliasses
-alias fishconfig "vim ~/.config/fish/config.fish"
+# Config file aliasses
+alias fishconfig "vim ~/dev/dotfiles/fish/config.fish"
+alias utilconfig "vim ~/dev/dotfiles/fish/config.fish"
+alias promptconfig "vim ~/dev/dotfiles/fish/config.fish"
 alias vimconfig "vim ~/dev/dotfiles/vim/vimrc"
 alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
+
+# Load the prompt configuration
+source ~/dev/dotfiles/fish/prompt.fish
+
+# Load z.fish - A script that helps to autofill to the latest use directory
+source ~/dev/dotfiles/fish/z.fish
 
 # Necessary stuff for Go
 set -x GOPATH $HOME/go
@@ -34,7 +42,7 @@ set -x GOPATH $HOME/go
 set -U EDITOR 'vim'
 
 # Alias to quickly reload fish 
-alias refish "source ~/.config/fish/config.fish"
+alias refish "source ~/dev/dotfiles/fish/fish.config"
 
 # Git add all, commit, and prompt for commit message
 # Usage:
