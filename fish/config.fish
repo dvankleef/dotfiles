@@ -87,3 +87,8 @@ setenv -x LESS_TERMCAP_us (set_color -o green)
 
 # grep colors
 setenv -x GREP_OPTIONS "--color=auto"
+
+# Repeat the last command with sudo, bash's `sudo !!` doesn't work in fish
+function please 
+    eval sudo $history[1]
+end
