@@ -419,9 +419,15 @@ augroup END
         au BufRead *.png,*.jpg sil exe "!open " . shellescape(expand("%:p")) | bd | let &ft=&ft
     augroup end
 
+" Configure JSDoc Plugin
+    let g:jsdoc_allow_input_prompt = 1 " Allow interactive input prompt
+    let g:jsdoc_input_description = 1 " Prompt for function description
+    nmap <silent> <leader>m :call JsDoc()<cr>
+
+
 " Check syntax with jscs
 " Syntax validator
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['jshint','jscs']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
