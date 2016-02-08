@@ -55,7 +55,6 @@ source ~/dev/dotfiles/fish/utils.fish
 # Necessary stuff for Go
 set -x GOPATH $HOME/go
 
-<<<<<<< HEAD
 # Set the NVM Path
 #set -x NVM_DIR "/home/yq63el/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] and source "$NVM_DIR/nvm.sh" # This loads NVM 
@@ -107,7 +106,7 @@ function noproxy
     set -x ftp_proxy ''
     set -x FTP_PROXY ''
 end
-=======
+
 # Make vim the default $EDITOR
 set -U EDITOR 'vim'
 
@@ -151,6 +150,3 @@ setenv -x LESS_TERMCAP_so (set_color -b blue -o yellow)
 setenv -x LESS_TERMCAP_ue (set_color normal)
 setenv -x LESS_TERMCAP_us (set_color -o green)
 
-# grep colors
-setenv -x GREP_OPTIONS "--color=auto"
->>>>>>> a89b3ed36495606723772a860cd43ec946e3b762
