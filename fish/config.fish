@@ -29,6 +29,8 @@ alias grh "git reset HEAD"
 alias gcm "git commit -m"
 alias lastcommit "git show HEAD"
 alias ap "git add --all; git commit --amend --no-edit"
+# Git add all, commit and push
+alias gap "gac; gpb" 
 #alias gca "git add -A && git commit"
 
 alias gl="clear ;and git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -138,7 +140,7 @@ end
 
 # LESS with colors
 # from http://blog.0x1fff.com/2009/11/linux-tip-color-enabled-pager-less.html
-set -x LESS "-RSM~gIsw"
+#set -x LESS "-RSM~gIsw"
 
 # Colorful man pages
 # from http://pastie.org/pastes/206041/text
