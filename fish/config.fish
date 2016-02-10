@@ -9,11 +9,20 @@ alias l ls
 alias c clear
 alias q exit
 
+alias h peco_select_history
+
 # Function to push current branch to origin
 function pushbranch
     set branch (git rev-parse --abbrev-ref HEAD)
     git push origin $branch
 end
+
+function pullbranch
+    set branch (git rev-parse --abbrev-ref HEAD)
+    git pull origin $branch
+end
+
+
 
 # Git aliasses
 alias gc "git commit"
@@ -27,6 +36,7 @@ alias gdc "git diff --cached"
 alias gpb "pushbranch"
 alias grh "git reset HEAD"
 alias gcm "git commit -m"
+alias gu "git pull origin master"
 alias lastcommit "git show HEAD"
 alias ap "git add --all; git commit --amend --no-edit"
 # Git add all, commit and push
