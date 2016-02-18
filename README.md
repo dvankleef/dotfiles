@@ -44,3 +44,5 @@ ln -s ~/dev/dotfiles/fish/config.fish ~/.config/fish/config.fish
 ``bash
 ln -s ~/dev/dotfiles/git/gitconfig ~/.gitconfig
 ``
+
+Optionally define your local git settings in `~/.gitconfig.local`
