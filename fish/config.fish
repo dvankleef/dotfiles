@@ -43,6 +43,7 @@ alias utilconfig "vim ~/dev/dotfiles/fish/utils.fish"
 alias promptconfig "vim ~/dev/dotfiles/fish/prompt.fish"
 alias vimconfig "vim ~/dev/dotfiles/vim/vimrc"
 alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
+alias gitconfig "vim ~/dev/dotfiles/git/gitconfig"
 
 # Load the prompt configuration
 source ~/dev/dotfiles/fish/prompt.fish
