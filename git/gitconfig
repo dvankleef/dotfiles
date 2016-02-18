@@ -1,5 +1,4 @@
 [alias]
-
     # View abbreviated SHA, description, and history graph of the latest 20 commits
     l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
@@ -62,12 +61,10 @@
     lg = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
 
 [apply]
-
     # Detect whitespace errors when applying a patch
     whitespace = fix
 
 [core]
-
     # Use custom `.gitignore` and `.gitattributes`
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
@@ -84,38 +81,43 @@
     # Use Sublime as the default editor
     editor = vim 
 
-[color]
+	# insanely beautiful diffs
+	pager = diff-highlight | diff-so-fancy | less -r
 
+[color]
     # Use colors in Git commands that are capable of colored output when
     # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
     ui = auto
 
 [color "branch"]
-
     current = yellow reverse
     local = yellow
     remote = green
 
 [color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 
-    meta = yellow bold
-    frag = magenta bold # line info
-    old = red # deletions
-    new = green # additions
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
 
 [color "status"]
-
     added = yellow
     changed = green
     untracked = cyan
 
 [diff]
-
     # Detect copies as well as renames
     renames = copies
 
 [help]
-
     # Automatically correct and execute mistyped commands
     autocorrect = 1
 
@@ -125,34 +127,40 @@
     tool = emerge
 
 [push]
-
     # Use the Git 1.x.x default to avoid errors on machines with old Git
     # installations. To use `simple` instead, add this to your `~/.extra` file:
     # `git config --global push.default simple`. See http://git.io/mMah-w.
-    default = matching
+    default = current
 
 # URL shorthands
 
 [url "git@github.com:"]
-
     insteadOf = "gh:"
     pushInsteadOf = "github:"
     pushInsteadOf = "git://github.com/"
 
 [url "git://github.com/"]
-
     insteadOf = "github:"
 
 [url "git@gist.github.com:"]
-
     insteadOf = "gst:"
     pushInsteadOf = "gist:"
     pushInsteadOf = "git://gist.github.com/"
 
 [url "git://gist.github.com/"]
-
     insteadOf = "gist:"
 
 [user]
     name = Richard Kraaijenhagen 
     email = stdin+git@riichard.com
+
+[credential]
+	helper = cache --timeout=518400
+
+[pager]
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+	show = diff-so-fancy | less --tabs=1,5 -RFX
+
+# use separate file for username / github token / etc
+[include]
+	path = ~/.gitconfig.local
