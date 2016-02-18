@@ -1,5 +1,5 @@
 # Color settings
-source ~/.mutt/themes/ivy_league/ivy_league.muttrc
+source ~/dev/dotfiles/mutt/mutt/themes/ivy_league/ivy_league.muttrc
 
 bind editor <space> noop
 macro index gi "<change-folder>=riichard/INBOX<enter>" "Go to inbox"
@@ -25,14 +25,14 @@ unhdr_order *                           # some distros order things by default
 hdr_order from: to: cc: date: subject:  # and in this order
 
 # Paths ----------------------------------------------
-set folder           = ~/.mail               # mailbox location
-set alias_file       = ~/.mutt/alias         # where to store aliases
-set header_cache     = ~/.mutt/cache/headers # where to store headers
-set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
-set certificate_file = ~/.mutt/certificates  # where to store certs
-set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
-set tmpdir           = ~/.mutt/temp          # where to keep temp files
-set signature        = ~/.mutt/sig           # my signature file
+#set folder           = ~/.mail               # mailbox location
+#set alias_file       = ~/.mutt/alias         # where to store aliases
+#set header_cache     = ~/.mutt/cache/headers # where to store headers
+#set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+#set certificate_file = ~/.mutt/certificates  # where to store certs
+#set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+#set tmpdir           = ~/.mutt/temp          # where to keep temp files
+#set signature        = ~/.mutt/sig           # my signature file
 
 # Basic Options --------------------------------------
 set wait_key = no        # shut up, mutt
@@ -151,11 +151,6 @@ bind index p recall-message
 bind index N search-opposite
 bind pager N search-opposite
 
-# Outgoing email Options -------------------------------
-set from     = "stdin@riichard.com"
-set sendmail = "/usr/local/bin/msmtp -a riichard"
-set sendmail_wait = 0
-unset record
 
 # Include contacts from osx --------------------------------- 
 set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"

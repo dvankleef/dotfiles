@@ -129,7 +129,7 @@ end
 # gcm
 # .. type your shitty commit message
 # <enter>
-function gcm
+function gcm 
     read -l -p git_commit_message message
     git commit -m $message
     return 0

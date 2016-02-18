@@ -98,6 +98,7 @@ Plugin 'fatih/vim-go' " Syntax highlighter for go
 Plugin 'scrooloose/nerdcommenter' " Comments on stereoids. I don't know how, but apparently this was uninstalled or not packed in the dotfiles.
 Plugin 'juanpabloaj/vim-istanbul' " Include code coverage from istanbul in the files
 Plugin 'heavenshell/vim-jsdoc' " Nice autocomplete for JSDoc
+Plugin 'tpope/vim-git' " Nice syntax highlighting for git configs, diffs and editing patches
 "Plugin 'reedes/vim-pencil' " Hopefully better text wrapping. Lets see if we
 "can do it without. No, but it requires some (re-)configuration.
 "

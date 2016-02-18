@@ -81,7 +81,7 @@
     # Use Sublime as the default editor
     editor = vim 
 
-	# insanely beautiful diffs
+	# insanely beautiful diffs	
 	pager = diff-highlight | diff-so-fancy | less -r
 
 [color]
@@ -156,11 +156,11 @@
 
 [credential]
 	helper = cache --timeout=518400
-
+    
 [pager]
 	diff = diff-so-fancy | less --tabs=1,5 -RFX
 	show = diff-so-fancy | less --tabs=1,5 -RFX
 
-# use separate file for username / github token / etc
+# use separate file for username / github token / etc 
 [include]
 	path = ~/.gitconfig.local
