@@ -96,6 +96,8 @@ function proxy
 
     set -x no_proxy "127.0.0.1, localhost,*.europe.intranet,*.ict.intranet"
     set -x NO_PROXY "127.0.0.1, localhost,*.europe.intranet,*.ict.intranet"
+
+    echo 'Configured proxy to $serverip'
 end
 
 # Disable Proxy settings
