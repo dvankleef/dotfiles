@@ -11,19 +11,6 @@ alias q exit
 
 alias h peco_select_history
 
-# Function to push current branch to origin
-function pushbranch
-    set branch (git rev-parse --abbrev-ref HEAD)
-    git push origin $branch
-end
-
-function pullbranch
-    set branch (git rev-parse --abbrev-ref HEAD)
-    git pull origin $branch
-end
-
-
-
 # Git aliasses
 alias gc "git commit"
 alias gs "git status"
@@ -35,13 +22,14 @@ alias gp "git push"
 alias gdc "git diff --cached"
 alias gpb "pushbranch"
 alias grh "git reset HEAD"
-alias gcm "git commit -m"
 alias undo "git checkout ."
+alias cb "git checkout"
 alias gu "git pull origin master"
+alias gac "git add .; gcm"
+alias gapc "git add -p .; gcm"
 alias lastcommit "git show HEAD"
 alias ap "git add --all; git commit --amend --no-edit"
 # Git add all, commit and push
-alias gap "gac; gpb" 
 #alias gca "git add -A && git commit"
 
 alias gl="clear ;and git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -133,20 +121,37 @@ function fish_greeting
     #cat ~/dev/dotfiles/fish/logo.txt
 end
 
-# Git add all, commit, and prompt for commit message
+# Git commit, and prompt for commit message
 # Usage:
-# gac
+# gcm
 # .. type your shitty commit message
 # <enter>
-function gac
+function gcm
     read -l -p git_commit_message message
-    git add .
     git commit -m $message
     return 0
 end
 
 function git_commit_message
     echo 'Enter your git commit message: '
+end
+
+# Function to push current branch to origin
+function pushbranch
+    set branch (git rev-parse --abbrev-ref HEAD)
+    git push origin $branch
+end
+
+# Function to pull current branch from origin
+function pullbranch
+    set branch (git rev-parse --abbrev-ref HEAD)
+    git pull origin $branch
+end
+
+
+# Open confluence search
+function confluence
+    open 'https://confluence.europe.intranet/dosearchsite.action?queryString=$args[1]'
 end
 
 # LESS with colors
