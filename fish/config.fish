@@ -9,16 +9,31 @@ alias l ls
 alias c clear
 alias q exit
 
+# Function to push current branch to origin
+function pushbranch
+    set branch (git rev-parse --abbrev-ref HEAD)
+    git push origin $branch
+end
+
 # Git aliasses
 alias gc "git commit"
 alias gs "git status"
-alias gl "git log"
 alias gd "git diff"
 alias ga "git add"
+alias gaa "git add ."
+alias gau "git add -u ."
 alias gp "git push"
+alias gdc "git diff --cached"
+alias gpb "pushbranch"
+alias grh "git reset HEAD"
+alias gcm "git commit -m"
 alias lastcommit "git show HEAD"
 alias ap "git add --all; git commit --amend --no-edit"
+# Git add all, commit and push
+alias gap "gac; gpb" 
 #alias gca "git add -A && git commit"
+
+alias gl="clear ;and git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # JIRASH
 alias jirash "~/dev/jirash/bin/jirash"
@@ -41,6 +56,58 @@ source ~/dev/dotfiles/fish/utils.fish
 
 # Necessary stuff for Go
 set -x GOPATH $HOME/go
+
+# Set the NVM Path
+#set -x NVM_DIR "/home/yq63el/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] and source "$NVM_DIR/nvm.sh" # This loads NVM 
+
+set -x NVM_DIR "/home/yq63el/.nvm"
+source ~/.config/fish/nvm-wrapper/nvm.fish
+
+function setCapsToCTRL
+    echo 'Setting Caps Lock key to Control, Linux only!'
+    xmodmap -e 'clear lock'
+    xmodmap -e 'keycode 0x42 = Control_L'
+    xmodmap -e 'add Control = Control_L'
+end
+
+# Load the login settings for the proxy from a different file
+source ~/.config/p.fish
+
+# Configure ING Proxy
+function proxy
+    echo 'Configuring Proxy'
+
+    set serverip "proxynldcv.europe.intranet"
+    set serverport "8080"
+    set username $u 
+    set password $p 
+    set proxypath "http://$username:$password@$serverip:$serverport"
+
+    set -x http_proxy $proxypath
+    set -x HTTP_PROXY $proxypath
+    set -x https_proxy $proxypath
+    set -x HTTPS_PROXY $proxypath
+    set -x ftp_proxy $proxypath
+    set -x FTP_PROXY $proxypath
+
+    set -x all_proxy $proxypath
+    set -x ALL_PROXY $proxypath
+
+    set -x no_proxy "127.0.0.1, localhost,*.europe.intranet,*.ict.intranet"
+    set -x NO_PROXY "127.0.0.1, localhost,*.europe.intranet,*.ict.intranet"
+end
+
+# Disable Proxy settings
+function noproxy
+    echo 'Deleting proxy setting'
+    set -x http_proxy ''
+    set -x HTTP_PROXY ''
+    set -x https_proxy ''
+    set -x HTTPS_PROXY ''
+    set -x ftp_proxy ''
+    set -x FTP_PROXY ''
+end
 
 # Make vim the default $EDITOR
 set -U EDITOR 'vim'
@@ -73,7 +140,7 @@ end
 
 # LESS with colors
 # from http://blog.0x1fff.com/2009/11/linux-tip-color-enabled-pager-less.html
-set -x LESS "-RSM~gIsw"
+#set -x LESS "-RSM~gIsw"
 
 # Colorful man pages
 # from http://pastie.org/pastes/206041/text
