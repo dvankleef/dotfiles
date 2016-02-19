@@ -9,6 +9,7 @@ alias l ls
 alias c clear
 alias q exit
 
+# Interactively browse and execute history
 alias h peco_select_history
 
 # Path configs
@@ -22,19 +23,22 @@ alias ga "git add"
 alias gaa "git add ."
 alias gau "git add -u ."
 alias gp "git push"
-alias gdc "git diff --cached"
-alias gpb "pushbranch"
-alias grh "git reset HEAD"
-alias undo "git checkout ."
-alias cb "git checkout"
-alias gu "git pull origin master"
-alias gac "git add .; gcm"
-alias gapc "git add -p .; gcm"
-alias lastcommit "git show HEAD"
-alias ap "git add --all; git commit --amend --no-edit"
+alias gdc "git diff --cached" # Show git changes that are about to be commited
+alias gpb "pushbranch" # Push the current branch
+alias grh "git reset HEAD" # Undo last commit 
+alias undo "git checkout ." # Undo changes in current working directory
+alias clean "git clean -df" # Clean new files
+alias cb "git checkout" # Change branch
+alias gu "git pull origin master" # Git update to stable branch
+alias gac "git add .; gcm" # Git Add all and Commit
+alias gapc "git add -p .; gcm" # Git Add Patch all and Commit
+alias lastcommit "git show HEAD" # Show diff last commit
+alias ap "git add --all; git commit --amend --no-edit" # Add to previous commit
+alias gr "cd (git rev-parse --show-cdup)" # Go to git root
 # Git add all, commit and push
 #alias gca "git add -A && git commit"
 
+# Nicer git log line
 alias gl="clear ;and git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # JIRASH
@@ -47,6 +51,18 @@ alias promptconfig "vim ~/dev/dotfiles/fish/prompt.fish"
 alias vimconfig "vim ~/dev/dotfiles/vim/vimrc"
 alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
 alias gitconfig "vim ~/dev/dotfiles/git/gitconfig"
+
+# Repo aliases
+alias bi "bower install"
+alias bc "vim bower.json"
+alias bp "bower prune"
+
+alias re "vim README.md" # Make readme incasesensitive
+
+alias gf "vim Gruntfile.js"
+alias gt "grunt --help"
+
+alias dev "cd ~/dev/"
 
 # Load the prompt configuration
 source ~/dev/dotfiles/fish/prompt.fish
@@ -106,12 +122,12 @@ end
 # Disable Proxy settings
 function noproxy
     echo 'Deleting proxy setting'
-    set -x http_proxy ''
-    set -x HTTP_PROXY ''
-    set -x https_proxy ''
-    set -x HTTPS_PROXY ''
-    set -x ftp_proxy ''
-    set -x FTP_PROXY ''
+    set -e http_proxy 
+    set -e HTTP_PROXY 
+    set -e https_proxy 
+    set -e HTTPS_PROXY 
+    set -e ftp_proxy 
+    set -e FTP_PROXY
 end
 
 # Make vim the default $EDITOR
@@ -164,13 +180,13 @@ end
 # from http://blog.0x1fff.com/2009/11/linux-tip-color-enabled-pager-less.html
 #set -x LESS "-RSM~gIsw"
 
-# Colorful man pages
-# from http://pastie.org/pastes/206041/text
-setenv -x LESS_TERMCAP_mb (set_color -o red)
-setenv -x LESS_TERMCAP_md (set_color -o red)
-setenv -x LESS_TERMCAP_me (set_color normal)
-setenv -x LESS_TERMCAP_se (set_color normal)
-setenv -x LESS_TERMCAP_so (set_color -b blue -o yellow)
-setenv -x LESS_TERMCAP_ue (set_color normal)
-setenv -x LESS_TERMCAP_us (set_color -o green)
+## Colorful man pages
+## from http://pastie.org/pastes/206041/text
+#setenv -x LESS_TERMCAP_mb (set_color -o red)
+#setenv -x LESS_TERMCAP_md (set_color -o red)
+#setenv -x LESS_TERMCAP_me (set_color normal)
+#setenv -x LESS_TERMCAP_se (set_color normal)
+#setenv -x LESS_TERMCAP_so (set_color -b blue -o yellow)
+#setenv -x LESS_TERMCAP_ue (set_color normal)
+#setenv -x LESS_TERMCAP_us (set_color -o green)
 
