@@ -11,6 +11,9 @@ alias q exit
 
 alias h peco_select_history
 
+# Path configs
+set -gx PATH ~/bin $PATH
+
 # Git aliasses
 alias gc "git commit"
 alias gs "git status"
