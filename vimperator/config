@@ -1,0 +1,5 @@
+set! browser.startup.homepage=https://duckduckgo.com/
+
+"====[ Swap : and ; to make colon commands easier to type ]======
+    nnoremap  ;  :
+    nnoremap  :  ;
