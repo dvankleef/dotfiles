@@ -14,7 +14,8 @@ let g:javascript_conceal = 1
 set lazyredraw
 
 " Auto-reload modified files (with no local changes)
-set autoread
+:set autoread
+:au FileChangedShell * echo "Warning: File changed on disk"
 
 " Turn off backup and swap files
 set nobackup
@@ -98,6 +99,8 @@ Plugin 'fatih/vim-go' " Syntax highlighter for go
 Plugin 'scrooloose/nerdcommenter' " Comments on stereoids. I don't know how, but apparently this was uninstalled or not packed in the dotfiles.
 Plugin 'juanpabloaj/vim-istanbul' " Include code coverage from istanbul in the files
 Plugin 'heavenshell/vim-jsdoc' " Nice autocomplete for JSDoc
+Plugin 'tpope/vim-git' " Nice syntax highlighting for git configs, diffs and editing patches
+Plugin 'seyDoggy/vim-watchforchanges' " TODO Experiment, Should autoreload on filechange
 "Plugin 'reedes/vim-pencil' " Hopefully better text wrapping. Lets see if we
 "can do it without. No, but it requires some (re-)configuration.
 "
@@ -424,6 +427,10 @@ augroup END
     let g:jsdoc_input_description = 1 " Prompt for function description
     nmap <silent> <leader>m :call JsDoc()<cr>
 
+" Pretty Json
+    fu! Prettyjson()
+        :%! python -m json.tool
+    endfunction
 
 " Check syntax with jscs
 " Syntax validator
