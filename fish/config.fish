@@ -54,6 +54,8 @@ alias vimconfig "vim ~/dev/dotfiles/vim/vimrc"
 alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
 alias i3config "vim ~/dev/dotfiles/i3/config"
 alias gitconfig "vim ~/dev/dotfiles/git/gitconfig"
+alias fireconfig "vim ~/dev/dotfiles/vimperator/config"
+alias vimperatorconfig "fireconfig"
 
 # Repo aliases
 alias bi "bower install"
@@ -70,7 +72,6 @@ alias dev "cd ~/dev/"
 
 alias dotfiles "cd ~/dev/dotfiles/"
 alias df "dotfiles"
->>>>>>> 2e5ae75ee7a53fb804e47ac74a19a843d877aa37
 
 # Load the prompt configuration
 . ~/dev/dotfiles/fish/prompt.fish

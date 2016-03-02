@@ -26,9 +26,7 @@ Add this to `~/.vimrc`.
 ```vim
 source $HOME/dev/dotfiles/vim/vimrc
 ```
-
 To install the plugins:
-
 ```
 cd ~/dev/dotfiles/vim/vim/
 mkdir bundle
@@ -39,20 +37,30 @@ revim
 
 ### jshint
 
-``bash
+```bash
 ln -s ~/dev/dotfiles/jshint/config.json ~/.jshintrc
-``
+```
 
 ### fish
 
-``bash
+```bash
 ln -s ~/dev/dotfiles/fish/config.fish ~/.config/fish/config.fish
-``
+```
 
 ### Git
 
-``bash
+```bash
 ln -s ~/dev/dotfiles/git/gitconfig ~/.gitconfig
-``
+```
 
 Optionally define your local git settings in `~/.gitconfig.local`
+
+### firefox vimperator
+```bash
+ln -s ~/dev/dotfiles/vimperator/config ~/.vimperatorrc
+```
+
+### i3
+```bash
+ln -s ~/dev/dotfiles/i3/config ~/.i3/config
+```
