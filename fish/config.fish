@@ -27,9 +27,11 @@ alias gdc "git diff --cached" # Show git changes that are about to be commited
 alias gpb "pushbranch" # Push the current branch
 alias grh "git reset HEAD" # Undo last commit 
 alias undo "git checkout ." # Undo changes in current working directory
+alias gup "git checkout --patch" # Undo changes in current working directory with a patch wizzard
+alias undop "gup" # Alias
 alias clean "git clean -df" # Clean new files
 alias cb "git checkout" # Change branch
-alias gu "git pull origin master" # Git update to stable branch
+alias gu "git pull origin master; git pull origin develop; pullbranch" # Git update to stable branch
 alias gac "git add .; gcm" # Git Add all and Commit
 alias gapc "git add -p .; gcm" # Git Add Patch all and Commit
 alias lastcommit "git show HEAD" # Show diff last commit
@@ -49,7 +51,7 @@ alias fishconfig "vim ~/dev/dotfiles/fish/config.fish"
 alias utilconfig "vim ~/dev/dotfiles/fish/utils.fish"
 alias promptconfig "vim ~/dev/dotfiles/fish/prompt.fish"
 alias vimconfig "vim ~/dev/dotfiles/vim/vimrc"
-alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
+alias tmuxconfig "vim ~/dev/dotfiles/tmux/config.conf"
 alias gitconfig "vim ~/dev/dotfiles/git/gitconfig"
 
 # Repo aliases
@@ -62,7 +64,11 @@ alias re "vim README.md" # Make readme incasesensitive
 alias gf "vim Gruntfile.js"
 alias gt "grunt --help"
 
+# Directory aliases
 alias dev "cd ~/dev/"
+
+alias dotfiles "cd ~/dev/dotfiles/"
+alias df "dotfiles"
 
 # Load the prompt configuration
 source ~/dev/dotfiles/fish/prompt.fish
@@ -135,6 +141,8 @@ set -U EDITOR 'vim'
 
 # Alias to quickly reload fish 
 alias refish "source ~/dev/dotfiles/fish/config.fish"
+alias retmux "tmux source-file ~/dev/dotfiles/tmux/config.conf"
+alias revim "vim +PluginInstall +qall"
 
 # Custom welcome message
 function fish_greeting
