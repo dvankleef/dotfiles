@@ -27,6 +27,16 @@ Add this to `~/.vimrc`.
 source $HOME/dev/dotfiles/vim/vimrc
 ```
 
+To install the plugins:
+
+```
+cd ~/dev/dotfiles/vim/vim/
+mkdir bundle
+cd bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ./Vundle.vim
+revim
+```
+
 ### jshint
 
 ``bash
