@@ -54,7 +54,7 @@ alias vimconfig "vim ~/dev/dotfiles/vim/vimrc"
 alias tmuxconfig "vim ~/dev/dotfiles/tmux/tmux.conf"
 alias i3config "vim ~/dev/dotfiles/i3/config"
 alias gitconfig "vim ~/dev/dotfiles/git/gitconfig"
-alias fireconfig "vim ~/dev/dotfiles/vimperator/config"
+alias ffconfig "vim ~/dev/dotfiles/vimperator/config"
 alias vimperatorconfig "fireconfig"
 
 # Repo aliases
@@ -145,7 +145,6 @@ set -U EDITOR 'vim'
 # Alias to quickly reload fish 
 alias refish ". ~/dev/dotfiles/fish/config.fish"
 alias rei3 "i3-msg reload"
-alias refish "source ~/dev/dotfiles/fish/config.fish"
 alias retmux "tmux source-file ~/dev/dotfiles/tmux/config.conf"
 alias revim "vim +PluginInstall +qall"
 
