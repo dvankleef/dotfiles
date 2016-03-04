@@ -123,8 +123,8 @@ function proxy
     set -g -x all_proxy $proxypath
     set -g -x ALL_PROXY $proxypath
 
-    set -g -x no_proxy "127.0.0.1, localhost,*.europe.intranet,*.ict.intranet"
-    set -g -x NO_PROXY "127.0.0.1, localhost,*.europe.intranet,*.ict.intranet"
+    set -g -x no_proxy "127.0.0.1, localhost,*.europe.intranet,*.ict.intranet, gitlab.ing.net"
+    set -g -x NO_PROXY "127.0.0.1, localhost,*.europe.intranet,*.ict.intranet, gitlab.ing.net"
 
     echo 'Configured proxy to $serverip'
 end
