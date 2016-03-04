@@ -17,6 +17,7 @@ set -gx PATH ~/bin $PATH
 
 # Git aliasses
 alias gc "git commit"
+alias gcl "git clone"
 alias gs "git status"
 alias gd "git diff"
 alias ga "git add"
