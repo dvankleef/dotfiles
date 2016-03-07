@@ -155,3 +155,5 @@ bindsym $mod+F1 exec firefox
 bar {
         status_command i3status
 }
+
+# vim:filetype=i3

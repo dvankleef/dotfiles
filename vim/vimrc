@@ -96,14 +96,15 @@ Plugin 'editorconfig/editorconfig-vim' "Apparently the-standard for project edit
 Plugin 'kchmck/vim-coffee-script' " Syntax highighting for coffeescript
 Plugin 'tpope/vim-abolish' " Convert variable to snake_case or camelCase
 Plugin 'fatih/vim-go' " Syntax highlighter for go
+Plugin 'PotatoesMaster/i3-vim-syntax' " Syntax highlighter for i3 config, add `# vim:filetype=i3` anywhere in your file in order to get it to work
 
 " Experiment with tern
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'marijnh/tern_for_vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'marijnh/tern_for_vim'
 
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+"let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
-set complete-=i
+"set complete-=i
 
 Plugin 'scrooloose/nerdcommenter' " Comments on stereoids. I don't know how, but apparently this was uninstalled or not packed in the dotfiles.
 Plugin 'juanpabloaj/vim-istanbul' " Include code coverage from istanbul in the files
