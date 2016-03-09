@@ -32,7 +32,7 @@ alias gup "git checkout --patch" # Undo changes in current working directory wit
 alias undop "gup" # Alias
 alias clean "git clean -df" # Clean new files
 alias cb "git checkout" # Change branch
-alias gu "git pull origin master; git pull origin develop; pullbranch" # Git update to stable branch
+alias gu "git pull origin master; pullbranch" # Git update to stable branch and current branch
 alias gac "git add .; gcm" # Git Add all and Commit
 alias gapc "git add -p .; gcm" # Git Add Patch all and Commit
 alias lastcommit "git show HEAD" # Show diff last commit
@@ -210,3 +210,4 @@ setenv -x GREP_OPTIONS "--color=auto"
 function please 
     eval sudo $history[1]
 end
+
