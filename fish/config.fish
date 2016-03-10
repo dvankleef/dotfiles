@@ -189,6 +189,14 @@ function confluence
     open 'https://confluence.europe.intranet/dosearchsite.action?queryString=$args[1]'
 end
 
+function stashClone
+    git clone ssh://git@stash.europe.intranet:7999/$argv[1]/$argv[2].git; cd $argv[2]
+end
+
+function glClone
+    git clone ssh://git@gitlab.ing.net:2222/$argv[1]/$argv[2].git; cd $argv[2]
+end
+
 # LESS with colors
 # from http://blog.0x1fff.com/2009/11/linux-tip-color-enabled-pager-less.html
 #set -x LESS "-RSM~gIsw"
@@ -211,3 +219,4 @@ function please
     eval sudo $history[1]
 end
 
+set -x -g PHANTOMJS_CDNURL http://bl00043.nl.europe.intranet:8080/download
